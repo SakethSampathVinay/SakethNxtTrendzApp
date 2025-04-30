@@ -1,6 +1,6 @@
-import { Component } from 'react'
+import {Component} from 'react'
 import Cookies from 'js-cookie'
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 import './index.css'
 
@@ -13,15 +13,15 @@ class LoginForm extends Component {
   }
 
   onChangeUsername = event => {
-    this.setState({ username: event.target.value })
+    this.setState({username: event.target.value})
   }
 
   onChangePassword = event => {
-    this.setState({ password: event.target.value })
+    this.setState({password: event.target.value})
   }
 
   onSubmitSuccess = jwtToken => {
-    const { history } = this.props
+    const {history} = this.props
 
     Cookies.set('jwt_token', jwtToken, {
       expires: 1,
@@ -30,13 +30,13 @@ class LoginForm extends Component {
   }
 
   onSubmitFailure = errorMsg => {
-    this.setState({ showSubmitError: true, errorMsg })
+    this.setState({showSubmitError: true, errorMsg})
   }
 
   submitForm = async event => {
     event.preventDefault()
-    const { username, password } = this.state
-    const userDetails = { username, password }
+    const {username, password} = this.state
+    const userDetails = {username, password}
     const url = 'https://apis.ccbp.in/login'
     const options = {
       method: 'POST',
@@ -52,7 +52,7 @@ class LoginForm extends Component {
   }
 
   renderPasswordField = () => {
-    const { password } = this.state
+    const {password} = this.state
 
     return (
       <>
@@ -72,7 +72,7 @@ class LoginForm extends Component {
   }
 
   renderUsernameField = () => {
-    const { username } = this.state
+    const {username} = this.state
 
     return (
       <>
@@ -92,7 +92,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { showSubmitError, errorMsg } = this.state
+    const {showSubmitError, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
 
     if (jwtToken !== undefined) {
@@ -126,14 +126,21 @@ class LoginForm extends Component {
 
           <div className="credentials-info">
             <h4>Prime User Credentials</h4>
-            <p>Username: <code>rahul</code></p>
-            <p>Password: <code>rahul@2021</code></p>
+            <p>
+              Username: <code>rahul</code>
+            </p>
+            <p>
+              Password: <code>rahul@2021</code>
+            </p>
 
             <h4>Non-Prime User Credentials</h4>
-            <p>Username: <code>raja</code></p>
-            <p>Password: <code>raja@2021</code></p>
+            <p>
+              Username: <code>raja</code>
+            </p>
+            <p>
+              Password: <code>raja@2021</code>
+            </p>
           </div>
-
         </form>
       </div>
     )
